@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react"
+
 
 function App() {
+  const [number, setNumber] = useState(0);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+
+      <h1>{number}</h1>
+      <h2 className={number >= 0 ? "positive" : "negative"}>
+        {number >= 0 ? "Positivo" : "Negativo"}
+      </h2>
+      <input
+        type="number"
+        name="number"
+        value={number}
+        onChange={({target}) => setNumber(parseInt(target.value))}
+      />
+
+      {/*Tabuada*/}
+      <ul>
+        {Array.from({length: 11}).map((_, i)=>(
+        <li key = {i}>
+          {number} x {i} = {number * i}
+        </li>
+      ))}
+      </ul>
+    </>
   );
 }
 
